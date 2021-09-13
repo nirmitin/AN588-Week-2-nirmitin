@@ -1,0 +1,82 @@
+---
+title: "nirmitin_OriginalHomeworkCode_01"
+author: "Nirmiti Naik"
+date: "13 September 2021"
+output: html_document
+---
+## **Challenge 1**
+```{r challenge 1}
+v1 <- c("Stately", "plump", "Buck", "Mulligan", "came", "from", "the", "stairhead", "bearing", "a", "bowl", "of", "lather", "on", "which", "a", "mirror", "and", "a", "razor", "lay", "crossed")
+v1[seq(from = 1, to = 22, by = 3)]
+# installed stringr but "couldn't find str_split()"
+# str_split(v1, "bowl", n=3, simplify = FALSE)
+```
+
+## **Challenge 2**
+```{r challenge 2}
+m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
+# extracting columns 2,3,6 and assigning to x
+x <- m[,c(2,3,6)]
+x
+# extracting rows 6-8 and assigning to x
+x <- m[(6:8),]
+x
+# extracting elements from r2c2 to r6c9 and assign to x
+x <- m[2:6,2:9]
+x
+```
+
+# **Challenge 3**
+``` {r challenge 3}
+a <-array(data = 400:1, dim = c(5,5,4,4))
+
+# still trying to figure out how to bullet point the below answers, they show up as errors whenever I use * instead of #
+# 300 
+# 364 264 164 64
+#      [,1] [,2] [,3] [,4] [,5]
+#[1,]  150  145  140  135  130
+#[2,]  149  144  139  134  129
+#[3,]  148  143  138  133  128
+#[4,]  147  142  137  132  127
+#[5,]  146  141  136  131  126
+
+a[1,1,1,2]
+a[2,3,2,]
+a[1:5,1:5,3,3] 
+
+```
+
+# **Challenge 4**
+``` {r challenge 4}
+# along the right lines but need to figure out how to prevent name of list from showing in every subbranch and how to make Platyrrhini and Catarrhini show up
+
+# I suspect it's commands getting doubled up
+
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+Lorisoidea <- c("Lorisidae", "Galagidae")
+Strepsirhini <- list(Lemuroidea, Lorisoidea)
+names(Strepsirhini) <- list("Lemuroidea", "Lorisoidea")
+
+Platyrrhini <- c("Cebidae", "Atelidae", "Pitheciidae")
+Catarrhini <- c("Cercopithecidae", "Hylobatidae", "Hominidae")
+Anthropoidea <- list(Platyrrhini, Catarrhini)
+names(Anthropoidea) <- list(Platyrrhini, Catarrhini)
+
+Tarsioidea <- c("Tarsiidae")
+Haplorhini <- list(Anthropoidea, Tarsioidea)
+names(Haplorhini) <- list("Anthropoidea", "Tarsioidea")
+
+Primates <- list(Haplorhini, Strepsirhini)
+names(Primates) <- list("Haplorhini", "Strepsirhini")
+
+Primates
+```
+
+## **Challenge 5**
+``` {r challenge 5} 
+#m3 <- matrix(data = 3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2, dim = c(5,3))
+m3 <- matrix(data = c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
+m3.df <- as.data.frame(m3)
+m3.df2 <- as.numeric(m3.df[,2])
+m3.df3 <- as.factor(m3.df[,3])
+```
