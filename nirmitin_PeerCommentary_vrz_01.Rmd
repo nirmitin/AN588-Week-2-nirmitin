@@ -1,0 +1,125 @@
+---
+title: "nirmitin_OriginalHomeworkCode_01"
+author: "Nirmiti Naik"
+date: "13 September 2021"
+output: html_document
+---
+## **Challenge 1**
+<br>
+right off the bat - your HTML site knitted together successfully! nice job and your Challenge headings look great
+<br>
+I like how you labeled each code section, I think Im going to go back and add that to mine
+<br>
+for Challenge 1, I believe in order for the str_split() command to work you need to define a 'string.' In this instance, the 'string' would "Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed." You can then use the function Prof Schmitt hinted at [gsub("[[:punct:]]","",string)] to remove punctuation/special characters. From here you could use str_split(z, boundary("word")) to separate the string of words into individual 1 word, character strings. Nice job with the sequence command, that's the same thing I did to extract every 3rd element. 
+<br>
+```{r challenge 1}
+v1 <- c("Stately", "plump", "Buck", "Mulligan", "came", "from", "the", "stairhead", "bearing", "a", "bowl", "of", "lather", "on", "which", "a", "mirror", "and", "a", "razor", "lay", "crossed")
+v1[seq(from = 1, to = 22, by = 3)]
+# installed stringr but "couldn't find str_split()"
+# str_split(v1, "bowl", n=3, simplify = FALSE)
+```
+<br>
+<br>
+I definitely recommend putting your text (after the #) in the text sections to more clearly separate your code from your explanations.
+Also the html code I added above and below this line add spaces between your sections in HTML format, they can be handy additions to keep things looking clean
+<br>
+<br>
+## **Challenge 2**
+```{r challenge 2}
+m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
+# extracting columns 2,3,6 and assigning to x
+x <- m[,c(2,3,6)]
+x
+# extracting rows 6-8 and assigning to x
+x <- m[(6:8),]
+x
+# extracting elements from r2c2 to r6c9 and assign to x
+x <- m[2:6,2:9]
+x
+```
+<br>
+<br>
+nice job with challenge 2! 
+<br>
+<br>
+# **Challenge 3**
+<br>
+<br>
+dont worry about bulleting your answers because they will automatically print after the code runs when you knit the HTML! also * is read as multiply and not a bullet point which is probably why you were getting errors. 
+<br>
+<br>
+``` {r challenge 3}
+a <-array(data = 400:1, dim = c(5,5,4,4))
+a
+```
+<br>
+<br>
+Also i added [a] under your array function so it will actually print all 16 matrices that make up the 4 dimension array.
+<br>
+<br>
+```{r}
+a[1,1,1,2]
+a[2,3,2,]
+a[1:5,1:5,3,3] 
+
+```
+see above how all three a[...] commands conveniently printed their answers directly below
+<br>
+<br>
+# **Challenge 4**
+``` {r challenge 4}
+# along the right lines but need to figure out how to prevent name of list from showing in every subbranch and how to make Platyrrhini and Catarrhini show up
+
+# I suspect it's commands getting doubled up
+
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+Lorisoidea <- c("Lorisidae", "Galagidae")
+Strepsirhini <- list(Lemuroidea, Lorisoidea)
+names(Strepsirhini) <- list("Lemuroidea", "Lorisoidea")
+
+Platyrrhini <- c("Cebidae", "Atelidae", "Pitheciidae")
+Catarrhini <- c("Cercopithecidae", "Hylobatidae", "Hominidae")
+Anthropoidea <- list(Platyrrhini, Catarrhini)
+names(Anthropoidea) <- list("Platyrrhini", "Catarrhini")
+
+Tarsioidea <- c("Tarsiidae")
+Haplorhini <- list(Anthropoidea, Tarsioidea)
+names(Haplorhini) <- list("Anthropoidea", "Tarsioidea")
+
+Primates <- list(Haplorhini, Strepsirhini)
+names(Primates) <- list("Haplorhini", "Strepsirhini")
+
+Primates
+```
+<br>
+I think the only issue in challenge 4 was you were missing quotations around the names in the second list you created, maybe that is what was messing things up? I added them so i think it is good now, or at least it looks like mine and that was my understanding of what we had to do lol
+<br>
+<br>
+## **Challenge 5**
+<br>
+<br>
+``` {r challenge 5} 
+#m3 <- matrix(data = 3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2, dim = c(5,3))
+m3 <- matrix(data = c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
+m3.df <- as.data.frame(m3)
+m3.df2 <- as.numeric(m3.df[,2])
+m3.df3 <- as.factor(m3.df[,3])
+```
+<br>
+You are missing the part where you have to  coerce the second column to be logical-valued. I added the as.logical() command above! you should also include the str() command to display the final data type for each variable in m3.df
+also maybe I am wrong about this but i believe you should have each as.___() command relate back to m3.df and not create new objects for each one since we want to change the original dataframe so str(m3.df) shows the different data types from all your changes. I  pasted a slightly different version of your code below for you to check out
+<br>
+```{r vrz challenge 5 code}
+
+m3<-matrix(data = c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
+m3.df <- as.data.frame(m3)
+m3.df
+m3.df$V2<-as.logical(m3.df$V2)
+m3.df
+m3.df$V3<-as.factor(m3.df$V3)
+m3.df
+str(m3.df)
+```
+<br>
+please lmk if you have any questions or confusion with my comments !
+<br>
