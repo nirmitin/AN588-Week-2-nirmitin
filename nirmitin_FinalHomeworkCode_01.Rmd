@@ -1,0 +1,140 @@
+---
+title: "nirmitin_FinalHomeworkCode_01"
+author: "Nirmiti Naik"
+date: "16 September 2021"
+output: html_document
+---
+<br>
+The stringr package is installed so that the command str_split() will work. 
+```{r}
+library(stringr)
+```
+
+## **Challenge 1**
+<br> 
+First, I assigned v1 to the given first line of "Ulysses"" by James Joyce
+``` {r challenge 1 final i}
+v1 <- "Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+```
+
+Then, I removed the punctuation so that the vector can eventually be comprised of only one word character strings and assigned the result to x
+``` {r challenge 1 final ii}
+x <- gsub("[[:punct:]]","",v1)
+x
+```
+
+Next, I split the vector into one word character strings using str_split() from the stringr package and assigned the result to y
+```{r challenge 1 final iii}
+y <- str_split(x, boundary("word"))
+y
+```
+
+Finally, I used a sequence command to extract every third element from a matrix m composed of the vector y
+``` {r challenge 1 final iv}
+m <- matrix(data= c("Stately","plump","Buck","Mulligan","came","from","the","stairhead","bearing","a","bowl","of","lather","on","which","a","mirror","and","a","razor","lay","crossed"))
+m[seq(from = 1, to = 22, by = 3)]
+```
+
+## **Challenge 2**
+<br>
+I recreated the given matrix that the columns will eventually be extracted from.
+```{r challenge 2 final i}
+m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
+m
+```
+First, I extracted the 2nd, 3rd, and 6th columns and assigned them to the variable x.
+```{r challenge 2 final ii}
+x <- m[,c(2,3,6)]
+x
+```
+Then, I extracted the 6th to 8th row and assigned them to the variable x. 
+```{r challenge 2 final iii}
+x <- m[(6:8),]
+x
+```
+Finally, I extracted the elements from row 2, column 2 to row 6, column 9 and assigned them to the variable x.
+``` {r challenge 2 final iv}
+x <- m[2:6,2:9]
+x
+```
+
+# **Challenge 3**
+<br>
+First, I created an 4-dimensional, 400 element array (5 x 5 x 4 x 4) array a with the elements being 400 to 1 in descending order
+``` {r challenge 3 final i}
+a <-array(data = 400:1, dim = c(5,5,4,4))
+a
+```
+The result of a[1,1,1,2] would be the element at position [1,1] in the [,,1,2] matrix
+```{r challenge 3 final ii}
+a[1,1,1,2]
+```
+The result of a[2,3,2,] would be the elements at position [2,3] in the [,,2,] matrices
+```{r challenge 3 final iii}
+a[2,3,2,]
+```
+The result of a[1:5,1:5,3,3] is the elements at positions from row 1, column 1 to row 5, column 5 in the [,,3,3] matrix
+```{r challenge 3 final iv}
+a[1:5,1:5,3,3] 
+```
+
+# **Challenge 4**
+<br>
+First, I used the given example of the Strepsirhini as a base to work off of 
+``` {r challenge 4 final i}
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+Lorisoidea <- c("Lorisidae", "Galagidae")
+Strepsirhini <- list(Lemuroidea, Lorisoidea)
+names(Strepsirhini) <- list("Lemuroidea", "Lorisoidea")
+```
+Then, I coded the two innermost/most evolved lists: Platyrrhini and Catarrhini (which fall under Anthropoidea) with the intention that these lists would be the most nested so it would make sense to establish them first
+``` {r challenge 4 final ii}
+Platyrrhini <- c("Cebidae", "Atelidae", "Pitheciidae")
+Catarrhini <- c("Cercopithecidae", "Hylobatidae", "Hominidae")
+Anthropoidea <- list(Platyrrhini, Catarrhini)
+names(Anthropoidea) <- list("Platyrrhini", "Catarrhini")
+```
+Next, I coded a list for Tarsioidea which falls under Haplorhini along with Anthropoidea
+``` {r challenge 4 final iii}
+Tarsioidea <- c("Tarsiidae")
+Haplorhini <- list(Anthropoidea, Tarsioidea)
+names(Haplorhini) <- list("Anthropoidea", "Tarsioidea")
+```
+Finally, I ended with the broadest/all encompassing list (Primates) so that it would be able to take all the previously created lists (contained under Haplorhini and Strepsirhini) under it to branch off
+``` {r challenge 4 final iv}
+Primates <- list(Haplorhini, Strepsirhini)
+names(Primates) <- list("Haplorhini", "Strepsirhini")
+
+Primates
+```
+
+## **Challenge 5**
+<br>
+The peer commentary I receieved was especially helpful for this challenge and allowed me to better understand the problem itself and how to use the various as.__() commands. 
+
+To begin with, I stored 3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2 in a 5x3 row-wise matrix m3. 
+``` {r challenge 5 final i} 
+m3<-matrix(data = c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
+m3
+```
+Then, I coerced the matrix into a data frame.
+``` {r challenge final ii}
+m3.df <- as.data.frame(m3)
+m3.df
+```
+Next, I used as.logical() to coerce the second column to be logical-valued. 
+``` {r challenge final iii}
+m3.df$V2<-as.logical(m3.df[,2])
+m3.df
+```
+Following this,I used as.factor() to coerce the third column to be factor-valued
+``` {r challenge final iv}
+m3.df$V3<-as.factor(m3.df[,3])
+m3.df
+```
+Finally, I used the str() command to show the data type for each variable in my dataframe
+``` {r challenge final v}
+str(m3.df)
+```
+<br>
+<br>
